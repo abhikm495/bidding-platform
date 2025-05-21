@@ -48,5 +48,7 @@ endedAuctionCron();
 verifyCommissionCron();
 connection();
 app.use(errorMiddleware);
-
+app.get("/",(req,res)=>{
+  res.send("hello ,this is home page")
+})
 export default app;
