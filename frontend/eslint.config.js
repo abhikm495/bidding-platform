@@ -23,6 +23,10 @@ export default [
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
+    env: {
+      browser: true,
+      node: true, // Add Node.js environment
+    },
     rules: {
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
