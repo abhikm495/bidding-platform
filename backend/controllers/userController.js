@@ -37,8 +37,6 @@ export const register = catchAsyncErrors(async (req, res, next) => {
       bankAccountNumber,
       bankAccountName,
       bankName,
-      easypaisaAccountNumber,
-      paypalEmail,
     } = req.body;
     console.log("10. Body destructured");
 
@@ -58,19 +56,6 @@ export const register = catchAsyncErrors(async (req, res, next) => {
       }
       console.log("15. Bank details check passed");
       
-      if (!easypaisaAccountNumber) {
-        console.log("16. Easypaisa account missing");
-        return next(
-          new ErrorHandler("Please provide your easypaisa account number.", 400)
-        );
-      }
-      console.log("17. Easypaisa check passed");
-      
-      if (!paypalEmail) {
-        console.log("18. PayPal email missing");
-        return next(new ErrorHandler("Please provide your paypal email.", 400));
-      }
-      console.log("19. PayPal check passed");
     }
     console.log("20. Role-specific checks passed");
 
@@ -134,12 +119,6 @@ export const register = catchAsyncErrors(async (req, res, next) => {
           bankAccountNumber,
           bankAccountName,
           bankName,
-        },
-        easypaisa: {
-          easypaisaAccountNumber,
-        },
-        paypal: {
-          paypalEmail,
         },
       },
     });

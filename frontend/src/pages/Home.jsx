@@ -5,20 +5,53 @@ import FeaturedAuctions from "./home-sub-components/FeaturedAuctions";
 import UpcomingAuctions from "./home-sub-components/UpcomingAuctions";
 import Leaderboard from "./home-sub-components/Leaderboard";
 import Spinner from "@/custom-components/Spinner";
+import winEmail from "@/assets/win-email.svg"
+import payment from "@/assets/payment.svg"
+import placeBid from "@/assets/place-bid.svg"
+import postBid from "@/assets/post-bid.svg"
+import CardContent from "@/custom-components/CardContent";
+
 
 const Home = () => {
   const howItWorks = [
-    { title: "Post Items", description: "Auctioneer posts items for bidding." },
-    { title: "Place Bids", description: "Bidders place bids on listed items." },
-    {
-      title: "Win Notification",
-      description: "Highest bidder receives a winning email.",
+  {
+    title: "Post Items",
+    icon: postBid,
+    description: "Auctioneers can easily post items for bidding, showcasing their unique offerings to potential bidders.",
+    color: {
+      backGround: "linear-gradient(180deg, #bb67ff 0%, #c484f3 100%)",
+      boxShadow: "0px 10px 20px 0px #e0c6f5",
     },
-    {
-      title: "Payment & Fees",
-      description: "Bidder pays; auctioneer pays 5% fee.",
+  },
+  {
+    title: "Place Bids",
+    icon: placeBid,
+    description: "Bidders can place competitive bids on listed items, ensuring they have a chance to win their desired products.",
+    color: {
+      backGround: "linear-gradient(rgb(248, 212, 154) -146.42%, rgb(255 202 113) -46.42%)",
+      boxShadow: "0px 10px 20px 0px #F9D59B",
     },
-  ];
+  },
+  {
+    title: "Win Notification",
+    icon: winEmail,
+    description: "The highest bidder receives a winning email notification, confirming their successful bid and next steps.",
+    color: {
+      backGround: "linear-gradient(180deg, #FF919D 0%, #FC929D 100%)",
+      boxShadow: "0px 10px 20px 0px #FDC0C7",
+    },
+  },
+  {
+    title: "Payment & Fees",
+    icon: payment,
+    description: "Once the auction concludes, the winning bidder processes payment, while the auctioneer receives their earnings minus a 5% fee.",
+    color: {
+      backGround: "linear-gradient(180deg, #4B83FF 0%, #6FA1FF 100%)",
+      boxShadow: "0px 10px 20px 0px #BFD4FF",
+    },
+  },
+];
+
 
   const { isAuthenticated } = useSelector((state) => state.user);
   return (
@@ -59,16 +92,10 @@ const Home = () => {
         </div>
         <div className="flex flex-col gap-6">
           <h3 className="text-[#111] text-xl font-semibold mb-2 min-[480px]:text-xl md:text-2xl lg:text-3xl">How it works</h3>
-          <div className="flex flex-col gap-4 md:flex-row md:flex-wrap w-full">
+          <div className="grid grid-cols-2 gap-4 md:flex-row md:flex-wrap w-full">
             {howItWorks.map((element) => {
               return (
-                <div
-                  key={element.title}
-                  className="bg-white flex flex-col gap-2 p-2 rounded-md h-[96px] justify-center md:w-[48%] lg:w-[47%] 2xl:w-[24%] hover:shadow-md transition-all duration-300"
-                >
-                  <h5 className="font-bold">{element.title}</h5>
-                  <p>{element.description}</p>
-                </div>
+                 <CardContent {...element} />
               );
             })}
           </div>
